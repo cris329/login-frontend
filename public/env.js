@@ -1,2 +1,2 @@
-// Vacío: el front usa /api/v1 y nginx o Vite lo reenvían al backend.
+// Vacío en local: /api/v1. En Vercel queda la dirección de la API.
 window.LOGIN_API = "";

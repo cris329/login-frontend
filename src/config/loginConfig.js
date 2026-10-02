@@ -1,6 +1,6 @@
 // Campos, etiquetas y valores vacíos de cada formulario.
 
-export const apiBase = () => "/api/v1"
+export const apiBase = () => window.LOGIN_API || "/api/v1"
 
 export const MAIL_SENDER = "cj.deysdayr@12332201.brevosend.com"
 
