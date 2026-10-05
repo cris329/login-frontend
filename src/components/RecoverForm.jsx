@@ -1,7 +1,7 @@
 import Fields from "./Fields"
 import { MAIL_SENDER, RECOVER_FIELDS } from "../config/loginConfig"
 
-function RecoverForm({ values, busy, waitLeft, onChange, onSend }) {
+function RecoverForm({ values, busy, waitLeft, onChange, onSend, onBack }) {
   const locked = busy || waitLeft > 0
   return (
     <form noValidate>
@@ -13,6 +13,7 @@ function RecoverForm({ values, busy, waitLeft, onChange, onSend }) {
         <button type="button" disabled={locked} onClick={() => onSend("sms")}>Enviar por SMS</button>
         <button type="button" className="ghost" disabled={locked} onClick={() => onSend("correo")}>Enviar por correo</button>
       </div>
+      <button type="button" className="link" disabled={busy} onClick={onBack}>Volver</button>
     </form>
   )
 }

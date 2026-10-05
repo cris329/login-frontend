@@ -28,7 +28,7 @@ function AccessView({ screen, message, waitLeft, busy, login, account, recover, 
         {waitLeft > 0 && <p className="wait">Puedes enviar otro código en {clock(waitLeft)}</p>}
         {screen === "login" && <LoginForm values={login} busy={busy} onChange={onEdit("login")} onSubmit={onLogin} onForgot={() => onShow("recover")} />}
         {screen === "register" && <RegisterForm values={account} busy={busy} onChange={onEdit("register")} onSubmit={onRegister} />}
-        {screen === "recover" && <RecoverForm values={recover} busy={busy} waitLeft={waitLeft} onChange={onEdit("recover")} onSend={onSend} />}
+        {screen === "recover" && <RecoverForm values={recover} busy={busy} waitLeft={waitLeft} onChange={onEdit("recover")} onSend={onSend} onBack={() => onShow("login")} />}
         {screen === "reset" && <ResetForm values={reset} busy={busy} onChange={onEdit("reset")} onSubmit={onReset} />}
       </main>
     </div>

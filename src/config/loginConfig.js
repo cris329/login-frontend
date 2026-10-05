@@ -13,8 +13,8 @@ export const REGISTER_FIELDS = [
   { name: "first_name", label: "Primer nombre", autoComplete: "given-name", pair: "name" },
   { name: "last_name", label: "Primer apellido", autoComplete: "family-name", pair: "name" },
   { name: "identification", label: "N° de identificación", inputMode: "numeric" },
-  { name: "phone", label: "Celular", optional: true, inputMode: "numeric", pair: "contact" },
-  { name: "correo", label: "Correo", optional: true, autoComplete: "email", pair: "contact" },
+  { name: "phone", label: "Celular", inputMode: "numeric", pair: "contact" },
+  { name: "correo", label: "Correo", autoComplete: "email", pair: "contact" },
   { name: "password", label: "Contraseña", type: "password", autoComplete: "new-password" },
 ]
 

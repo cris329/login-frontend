@@ -120,6 +120,9 @@ button.ghost { border: 1px solid #c5d4e4; }
 
 .help { margin: 0 0 1rem; line-height: 1.45; color: #526074; }
 
+.field-error { margin: -0.45rem 0 0.75rem; font-size: 0.82rem; line-height: 1.35; color: #9b1c1c; }
+input[aria-invalid="true"] { border-color: #b42318; background: #fff8f8; }
+
 @media (max-width: 760px) {
   .scene { grid-template-columns: 1fr; gap: 1.4rem; align-items: start; }
   .intro h1 { font-size: 1.6rem; }
