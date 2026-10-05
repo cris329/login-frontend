@@ -1,0 +1,69 @@
+/* Inicio de módulos a pantalla completa, después de iniciar sesión. */
+
+.home {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 1.6rem 2rem 2.5rem;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.bar h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.home button.exit,
+.home button.text {
+  width: auto;
+  padding: 0.5rem 0.95rem;
+  background: transparent;
+  color: #2f5f86;
+  border: 1px solid #c5d4e4;
+}
+
+.modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+}
+
+.modules button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  min-height: 8.5rem;
+  padding: 1.1rem 1.15rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.92);
+  color: #243044;
+  border-radius: 18px;
+  box-shadow: 0 14px 36px rgba(36, 48, 68, 0.08);
+}
+
+.modules strong { font-size: 1.15rem; }
+.modules span { color: #526074; line-height: 1.4; }
+
+.sheet {
+  max-width: 40rem;
+  padding: 1.4rem 1.3rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 18px;
+  box-shadow: 0 14px 36px rgba(36, 48, 68, 0.08);
+}
+
+.sheet p { margin: 0; line-height: 1.5; color: #526074; }
+
+@media (max-width: 760px) {
+  .home { padding: 1.2rem 1rem 2rem; }
+  .bar h1 { font-size: 1.45rem; }
+}

@@ -1,16 +1,10 @@
 // Coordina la pantalla y guarda en memoria el formulario, el mensaje y la espera del código.
 import { useEffect, useState } from "react"
-import LoginForm from "./components/LoginForm"
-import RecoverForm from "./components/RecoverForm"
-import RegisterForm from "./components/RegisterForm"
-import ResetForm from "./components/ResetForm"
-import SessionPanel from "./components/SessionPanel"
+import AccessView from "./components/AccessView"
+import ModuleHome from "./components/ModuleHome"
 import { emptyLogin, emptyRecover, emptyRegister, emptyReset, MAIL_SENDER } from "./config/loginConfig"
 import { post, renewSession } from "./services/loginService"
 
-function clock(seconds) {
-  return Math.floor(seconds / 60) + ":" + String(seconds % 60).padStart(2, "0")
-}
 function App() {
   const [screen, setScreen] = useState("login")
   const [message, setMessage] = useState(null)
@@ -120,30 +114,23 @@ function App() {
     setMessage({ type: "ok", text: "Contraseña actualizada. Ya puedes iniciar sesión." })
   }
 
-  const tabs = screen === "login" || screen === "register"
+  function leaveSession() {
+    sessionStorage.removeItem("login_token")
+    setLogin(emptyLogin())
+    setMessage(null)
+    setScreen("login")
+  }
+
+  if (screen === "session") return <ModuleHome onLeave={leaveSession} />
+
+  const editors = { login: setLogin, register: setAccount, recover: setRecover, reset: setReset }
   return (
-    <div className="scene">
-      <aside className="intro">
-        <p className="mark">Acceso</p>
-        <h1>Entra con tu número de identificación</h1>
-        <p>Si olvidas la contraseña, el código llega al celular o al correo.</p>
-      </aside>
-      <main className="panel">
-        {tabs && (
-          <div className="tabs">
-            <button type="button" className={screen === "login" ? "active" : ""} disabled={busy} onClick={() => show("login")}>Iniciar sesión</button>
-            <button type="button" className={screen === "register" ? "active" : ""} disabled={busy} onClick={() => show("register")}>Registro</button>
-          </div>
-        )}
-        <p className={"message" + (message ? " " + message.type : "")} role="status">{message ? message.text : ""}</p>
-        {waitLeft > 0 && <p className="wait">Puedes enviar otro código en {clock(waitLeft)}</p>}
-        {screen === "login" && <LoginForm values={login} busy={busy} onChange={edit(setLogin)} onSubmit={onLogin} onForgot={() => show("recover")} />}
-        {screen === "register" && <RegisterForm values={account} busy={busy} onChange={edit(setAccount)} onSubmit={onRegister} />}
-        {screen === "recover" && <RecoverForm values={recover} busy={busy} waitLeft={waitLeft} onChange={edit(setRecover)} onSend={sendCode} />}
-        {screen === "reset" && <ResetForm values={reset} busy={busy} onChange={edit(setReset)} onSubmit={onReset} />}
-        {screen === "session" && <SessionPanel />}
-      </main>
-    </div>
+    <AccessView
+      screen={screen} message={message} waitLeft={waitLeft} busy={busy}
+      login={login} account={account} recover={recover} reset={reset}
+      onShow={show} onEdit={(key) => edit(editors[key])}
+      onLogin={onLogin} onRegister={onRegister} onSend={sendCode} onReset={onReset}
+    />
   )
 }
 
